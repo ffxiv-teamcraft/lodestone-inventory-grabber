@@ -20,11 +20,12 @@ try {
             }
         });
 
-    let langFromUrl = /(fr|na|de|jp).finalfantasyxiv.com/.exec(window.location.href)[1];
+    let langFromUrl = /(fr|na|de|jp|eu).finalfantasyxiv.com/.exec(window.location.href)[1];
 
     const lang = {
         'fr': 'fr',
         'na': 'en',
+        'eu': 'en',
         'jp': 'ja',
         'de': 'de'
     }[langFromUrl];
