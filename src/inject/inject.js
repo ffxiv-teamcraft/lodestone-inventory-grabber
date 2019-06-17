@@ -11,34 +11,37 @@ function copyToClipboard(text) {
     document.body.removeChild(input);
 }
 
-
-const allItemNames = Array.from(document.getElementsByClassName('item-list__list sys_item_row'))
-    .map(el => {
-        return {
-            name: el.childNodes[3].childNodes[1].innerText,
-            amount: +el.dataset.stack,
-        }
-    });
-
-let langFromUrl = /(fr|na|de|jp).finalfantasyxiv.com/.exec(window.location.href)[1];
-
-const lang = {
-    'fr': 'fr',
-    'na': 'en',
-    'jp': 'ja',
-    'de': 'de'
-}[langFromUrl];
-
-fetch(itemsUrl)
-    .then((response) => response.json())
-    .then(items => {
-        const allIds = allItemNames.map(item => {
+try {
+    const allItemNames = Array.from(document.getElementsByClassName('item-list__list sys_item_row'))
+        .map(el => {
             return {
-                ...item,
-                id: +Object.keys(items).find(key => items[key][lang].toLowerCase() === item.name.trim().toLowerCase())
-            };
+                name: el.childNodes[3].childNodes[1].innerText,
+                amount: +el.dataset.stack,
+            }
         });
-        console.log(allIds);
-        copyToClipboard(JSON.stringify(allIds));
-    });
+
+    let langFromUrl = /(fr|na|de|jp).finalfantasyxiv.com/.exec(window.location.href)[1];
+
+    const lang = {
+        'fr': 'fr',
+        'na': 'en',
+        'jp': 'ja',
+        'de': 'de'
+    }[langFromUrl];
+
+    fetch(itemsUrl)
+        .then((response) => response.json())
+        .then(items => {
+            const allIds = allItemNames.map(item => {
+                return {
+                    ...item,
+                    id: +Object.keys(items).find(key => items[key][lang].toLowerCase() === item.name.trim().toLowerCase())
+                };
+            });
+            copyToClipboard(JSON.stringify(allIds));
+            alert('Inventory copied inside your clipboard');
+        });
+} catch (_) {
+    alert('Please click this extension only when you\'re inside retainer\'s inventory page (https://finalfantasyxiv.com/lodestone/character/.../retainer/.../baggage)');
+}
 

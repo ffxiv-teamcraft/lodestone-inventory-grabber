@@ -1,8 +1,8 @@
 {
-  "name": "Inventory grabber",
-  "version": "0.0.1",
+  "name": "Lodestone inventory grabber",
+  "version": "1.0.0",
   "manifest_version": 2,
-  "description": "A chrome extension to grab retainer's inventory from lodestone",
+  "description": "A chrome extension to grab retainer's inventory from lodestone into your clipboard",
   "homepage_url": "https://ffxivteamcraft.com/recipe-finder",
   "icons": {
     "16": "icons/icon16.png",
@@ -17,13 +17,12 @@
     "persistent": false
   },
   "browser_action": {
-    "default_icon": "icons/icon48.png",
+    "default_icon": "icons/icon128.png",
     "default_title": "Copy retainer's inventory inside clipboard"
   },
   "permissions": [
     "activeTab",
     "clipboardWrite",
-    "tabs",
     "https://ffxivteamcraft.com/lodestone/character/*/retainer/*/baggage/"
   ],
   "web_accessible_resources": [
