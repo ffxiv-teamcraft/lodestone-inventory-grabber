@@ -1,5 +1,3 @@
-const itemsUrl = chrome.runtime.getURL('data/items.json');
-
 function copyToClipboard(text) {
     const input = document.createElement('input');
     input.style.position = 'fixed';
@@ -30,7 +28,7 @@ try {
         'de': 'de'
     }[langFromUrl];
 
-    fetch(itemsUrl)
+    fetch(chrome.runtime.getURL('data/items.json'))
         .then((response) => response.json())
         .then(items => {
             const allIds = allItemNames.map(item => {
