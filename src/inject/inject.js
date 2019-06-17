@@ -32,9 +32,11 @@ try {
         .then((response) => response.json())
         .then(items => {
             const allIds = allItemNames.map(item => {
+                const id = Object.keys(items)
+                    .find(key => items[key][lang].trim().toLowerCase() === item.name.trim().toLowerCase());
                 return {
                     ...item,
-                    id: +Object.keys(items).find(key => items[key][lang].toLowerCase() === item.name.trim().toLowerCase())
+                    id: +id
                 };
             });
             copyToClipboard(JSON.stringify(allIds));
