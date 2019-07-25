@@ -31,13 +31,17 @@ void (async () => {
             api.runtime.getURL("/data/items.json")
         )).json();
         const nameMap = new Map(
-            Object.entries(items).map(([id, { [lang]: name }]) => [name, id])
+            Object.entries(items).map(([id, { [lang]: name }]) => [
+                name.trim(),
+                id
+            ])
         );
         const nameList = Array.from(nameMap.keys());
+        const collator = new Intl.Collator(lang, { usage: "search" });
         const allIds = allItemNames.map(item => {
             const id = nameMap.get(
                 nameList.find(
-                    name => name.trim().localeCompare(item.name.trim()) === 0
+                    name => collator.compare(name, item.name.trim()) === 0
                 )
             );
             return {
