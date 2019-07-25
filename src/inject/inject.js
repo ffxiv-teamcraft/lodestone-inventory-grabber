@@ -37,7 +37,10 @@ void (async () => {
             ])
         );
         const nameList = Array.from(nameMap.keys());
-        const collator = new Intl.Collator(lang, { usage: "search" });
+        const collator = new Intl.Collator(lang, {
+            usage: "search",
+            sensitivity: "base"
+        });
         const allIds = allItemNames.map(item => {
             const id = nameMap.get(
                 nameList.find(
