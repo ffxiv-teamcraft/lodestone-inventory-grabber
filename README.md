@@ -1,2 +1,3 @@
 # lodestone-inventory-grabber
-A chrome extension to grab retainer's inventory from lodestone
+
+A chrome / firefox extension to grab retainer's inventory from lodestone
