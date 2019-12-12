@@ -44,7 +44,7 @@ void (async () => {
         const allIds = allItemNames.map(item => {
             const id = nameMap.get(
                 nameList.find(
-                    name => collator.compare(name, item.name.trim()) === 0
+                    name => collator.compare(name, item.name.replace(/[\ue03c\ue03d]/,'').trim()) === 0
                 )
             );
             return {
